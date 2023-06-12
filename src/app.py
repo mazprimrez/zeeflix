@@ -16,7 +16,7 @@ from utils.graph import distribution, distribution_mrr, distribution_recall, pre
 ROOT_DIR = os.path.abspath(".")
 
 model =CatBoostClassifier()
-model.load_model(os.path.join(ROOT_DIR,'src/dataset/Catboost'),           
+model.load_model(os.path.join(ROOT_DIR,'dataset/Catboost'),           
            format="cbm")
 explainer = shap.TreeExplainer(model)    
 
