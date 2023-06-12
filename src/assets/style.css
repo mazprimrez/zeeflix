@@ -1,0 +1,43 @@
+body {
+    background-color:#ffffff;
+    margin: 0;
+    padding: 0;
+    max-width: 98%;
+  }
+
+p {
+    display: inline;
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+button {
+  text-align: center;
+}
+
+.page-container {
+  max-height: 95vh;
+  max-width: 95vw;
+  height: 95vh;
+  border: 0px solid #AF9F8C;
+  margin: 5vh auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.pred-box{
+  background-color: #683B2B;
+  color: #DeD1BD;
+}
+
+.float-box{
+  position: fixed;
+  right: 0%;
+  top: 0%;
+}
