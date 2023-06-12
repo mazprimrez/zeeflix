@@ -164,7 +164,6 @@ def waterfall(dataset, mvsId):
 def movies_metadata(value):
     reco, mvs, users = download_dataset()
     reco = reco.to_dict('records')
-    print(reco)
     mvs = mvs.to_dict('index')
     users = users.to_dict('index')
     return reco, mvs, users
@@ -175,7 +174,8 @@ def movies_metadata(value):
             Input('randomize-user', 'n_clicks'),
             Input('reco-info', 'data'))
 def randomized_users(n_clicks, dataset):
-    userInfo = np.random.choice(list(dataset))
+    idx = np.random.choice(len(dataset))
+    userInfo = dataset[idx]
     return userInfo
 
 
