@@ -8,21 +8,25 @@ import json
 from urllib.request import urlopen
 from catboost import CatBoostClassifier, Pool
 import shap
+import base64
 
 from utils.utils import download_dataset, table_prep, get_reco_metadata, update_input_dropwdown
 from utils.graph import distribution, distribution_mrr, distribution_recall, preprocessing_shap, waterfall_plot, top_movies_table
 
 model =CatBoostClassifier()
-model.load_model('dataset/Catboost',           
+model.load_model('src/dataset/Catboost',           
            format="cbm")
 explainer = shap.TreeExplainer(model)    
+
+image_filename = 'src/assets/shap_summary.png' # replace with your own image
+encoded_image = base64.b64encode(open(image_filename, 'rb').read())
 
 
 col_list = ['budget', 'popularity', 'revenue', 'runtime', 'vote_average', 'vote_count', 'movie_age', 'production_companies', 'production_countries', 'spoken_languages', 'genres', 'total_movies', 'userAvgRating', 'userAvgBudget', 'userAvgPopularity', 'userAvgMovieAge', 'userAvgRuntime', 'userTopPH', 'userTopGenres']
 categorical_col = ['production_companies', 'production_countries', 'spoken_languages', 'genres', 'userTopPH', 'userTopGenres']
 
 
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP, "assets/style.css"])
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP, "src/assets/style.css"])
 server = app.server
 
 app.layout = html.Div([
@@ -77,7 +81,7 @@ app.layout = html.Div([
             dbc.Row([
                 dbc.Col([
                     html.H3('Global Explanation'),
-                    dbc.Row(html.Img(src='assets/shap_summary.png')),
+                    dbc.Row(html.Img(src='https://raw.githubusercontent.com/mazprimrez/zeeflix/main/src/assets/shap_summary.png')),
 
                 ], ),
                 dbc.Col([
