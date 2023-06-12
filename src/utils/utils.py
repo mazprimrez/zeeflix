@@ -1,14 +1,17 @@
 import pandas as pd
 import ast
+import os
 
+
+ROOT_DIR = os.path.abspath(".")
 
 def download_dataset():
-    dataset = pd.read_csv('src/dataset/HR_result.csv')
+    dataset = pd.read_csv(os.path.join(ROOT_DIR, 'src/dataset/HR_result.csv'))
     
-    movies = pd.read_csv('src/dataset/simpler_movie_dataset.csv')
+    movies = pd.read_csv(os.path.join(ROOT_DIR, 'src/dataset/simpler_movie_dataset.csv'))
     movies = movies.drop_duplicates(subset='id').set_index('id')
 
-    users = pd.read_csv('src/dataset/user_metadata.csv', index_col='userId')
+    users = pd.read_csv(os.path.join(ROOT_DIR, 'src/dataset/user_metadata.csv'), index_col='userId')
     return dataset, movies, users
 
 def preprocess_data(dataset):
