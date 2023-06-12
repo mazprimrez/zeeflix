@@ -13,8 +13,6 @@ import os
 from utils.utils import download_dataset, table_prep, get_reco_metadata, update_input_dropwdown
 from utils.graph import distribution, distribution_mrr, distribution_recall, preprocessing_shap, waterfall_plot, top_movies_table
 
-ROOT_DIR = os.path.abspath(".")
-
 model =CatBoostClassifier()
 model.load_model('dataset/Catboost',           
            format="cbm")
