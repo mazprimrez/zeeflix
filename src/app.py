@@ -16,7 +16,7 @@ from utils.graph import distribution, distribution_mrr, distribution_recall, pre
 ROOT_DIR = os.path.abspath(".")
 
 model =CatBoostClassifier()
-model.load_model(os.path.join(ROOT_DIR,'dataset/Catboost'),           
+model.load_model('dataset/Catboost',           
            format="cbm")
 explainer = shap.TreeExplainer(model)    
 
@@ -25,7 +25,7 @@ col_list = ['budget', 'popularity', 'revenue', 'runtime', 'vote_average', 'vote_
 categorical_col = ['production_companies', 'production_countries', 'spoken_languages', 'genres', 'userTopPH', 'userTopGenres']
 
 
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP, "assets/style.css"])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, "assets/style.css"])
 server = app.server
 
 app.layout = html.Div([
@@ -80,7 +80,7 @@ app.layout = html.Div([
             dbc.Row([
                 dbc.Col([
                     html.H3('Global Explanation'),
-                    dbc.Row(html.Img(src='https://raw.githubusercontent.com/mazprimrez/zeeflix/main/src/assets/shap_summary.png')),
+                    dbc.Row(html.Img(src='assets/shap_summary.png')),
 
                 ], ),
                 dbc.Col([
